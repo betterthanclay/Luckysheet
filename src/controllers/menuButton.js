@@ -68,7 +68,7 @@ const menuButton = {
         '<div id="luckysheet-icon-${id}-menuButton" class="luckysheet-cols-menu luckysheet-rightgclick-menu luckysheet-rightgclick-menu-sub luckysheet-menuButton-sub luckysheet-mousedown-cancel"> <div class="luckysheet-mousedown-cancel"> <div class="luckysheet-mousedown-cancel"> <input type="text" class="luckysheet-color-selected" /> </div> </div></div>',
     rightclickmenu: null,
     submenuhide: {},
-    focus: function($obj, value) {
+    focus: function ($obj, value) {
         if ($obj.attr("id") == "luckysheet-icon-font-family-menuButton") {
             if (isdatatypemulti(value)["num"]) {
                 let _locale = locale();
@@ -93,7 +93,7 @@ const menuButton = {
                 .html('<i class="fa fa-check luckysheet-mousedown-cancel"></i>');
         }
     },
-    createButtonMenu: function(itemdata) {
+    createButtonMenu: function (itemdata) {
         let itemset = "";
         let _this = this;
 
@@ -126,7 +126,7 @@ const menuButton = {
 
         return itemset;
     },
-    cancelPaintModel: function() {
+    cancelPaintModel: function () {
         let _this = this;
 
         $("#luckysheet-sheettable_0").removeClass("luckysheetPaintCursor");
@@ -143,17 +143,17 @@ const menuButton = {
         Store.luckysheet_copy_save = {};
 
         _this.luckysheetPaintModelOn = false;
-        $("#luckysheetpopover").fadeOut(200, function() {
+        $("#luckysheetpopover").fadeOut(200, function () {
             $("#luckysheetpopover").remove();
         });
     },
     luckysheetPaintModelOn: false,
     luckysheetPaintSingle: false,
-    initialMenuButton: function() {
+    initialMenuButton: function () {
         let _this = this;
 
         //格式刷
-        $("#luckysheet-icon-paintformat").click(function(e) {
+        $("#luckysheet-icon-paintformat").click(function (e) {
             // *如果禁止前台编辑，则中止下一步操作
             if (!checkIsAllowEdit()) {
                 tooltip.info("", locale().pivotTable.errorNotAllowEdit);
@@ -204,7 +204,7 @@ const menuButton = {
                 true,
                 null,
                 locale_paint.end,
-                function() {
+                function () {
                     _this.cancelPaintModel();
                 },
             );
@@ -253,7 +253,7 @@ const menuButton = {
             _this.luckysheetPaintModelOn = true;
             _this.luckysheetPaintSingle = true;
         });
-        $("#luckysheet-icon-paintformat").dblclick(function() {
+        $("#luckysheet-icon-paintformat").dblclick(function () {
             // *如果禁止前台编辑，则中止下一步操作
             if (!checkIsAllowEdit()) {
                 tooltip.info("", locale().pivotTable.errorNotAllowEdit);
@@ -283,7 +283,7 @@ const menuButton = {
                 true,
                 null,
                 locale_paint.end,
-                function() {
+                function () {
                     _this.cancelPaintModel();
                 },
             );
@@ -331,21 +331,21 @@ const menuButton = {
         });
 
         //货币格式
-        $("#luckysheet-icon-currency").click(function() {
+        $("#luckysheet-icon-currency").click(function () {
             let d = editor.deepCopyFlowData(Store.flowdata); //取数据
 
-            _this.updateFormat(d, "ct", "¥ #.00");
+            _this.updateFormat(d, "ct", "£ #.00");
         });
 
         //百分比
-        $("#luckysheet-icon-percent").click(function() {
+        $("#luckysheet-icon-percent").click(function () {
             let d = editor.deepCopyFlowData(Store.flowdata); //取数据
 
             _this.updateFormat(d, "ct", "0.00%");
         });
 
         //减少小数位数
-        $("#luckysheet-icon-fmt-decimal-decrease").click(function() {
+        $("#luckysheet-icon-fmt-decimal-decrease").click(function () {
             let d = editor.deepCopyFlowData(Store.flowdata); //取数据
             let row_index = Store.luckysheet_select_save[0]["row_focus"],
                 col_index = Store.luckysheet_select_save[0]["column_focus"];
@@ -419,7 +419,7 @@ const menuButton = {
         });
 
         //增加小数位数
-        $("#luckysheet-icon-fmt-decimal-increase").click(function() {
+        $("#luckysheet-icon-fmt-decimal-increase").click(function () {
             let d = editor.deepCopyFlowData(Store.flowdata); //取数据
             let row_index = Store.luckysheet_select_save[0]["row_focus"],
                 col_index = Store.luckysheet_select_save[0]["column_focus"];
@@ -502,7 +502,7 @@ const menuButton = {
         });
 
         //更多格式
-        $("#luckysheet-icon-fmt-other").click(function() {
+        $("#luckysheet-icon-fmt-other").click(function () {
             const _locale = locale();
             const locale_format = _locale.format;
             const locale_defaultFmt = _locale.defaultFmt;
@@ -535,7 +535,7 @@ const menuButton = {
                 $menuButton = $("#" + menuButtonId).width(250);
                 _this.focus($menuButton);
 
-                $menuButton.find(".luckysheet-cols-menuitem").click(function() {
+                $menuButton.find(".luckysheet-cols-menuitem").click(function () {
                     $menuButton.hide();
                     luckysheetContainerFocus();
 
@@ -559,7 +559,7 @@ const menuButton = {
                 //更多格式
                 $("#luckysheet-icon-fmtOtherSelf-menuButton")
                     .find(".luckysheet-cols-menuitem")
-                    .click(function() {
+                    .click(function () {
                         $menuButton.hide();
                         $("#luckysheet-icon-fmtOtherSelf-menuButton").hide();
                         luckysheetContainerFocus();
@@ -592,11 +592,11 @@ const menuButton = {
 
         //字体设置
         $("#luckysheet-icon-font-family")
-            .mousedown(function(e) {
+            .mousedown(function (e) {
                 hideMenuByCancel(e);
                 e.stopPropagation();
             })
-            .click(function() {
+            .click(function () {
                 let menuButtonId = $(this).attr("id") + "-menuButton";
                 let $menuButton = $("#" + menuButtonId);
                 if ($menuButton.length == 0) {
@@ -620,7 +620,7 @@ const menuButton = {
                     $menuButton = $("#" + menuButtonId).width(200);
                     _this.focus($menuButton);
 
-                    $menuButton.on("click", ".luckysheet-cols-menuitem", function() {
+                    $menuButton.on("click", ".luckysheet-cols-menuitem", function () {
                         $menuButton.hide();
                         luckysheetContainerFocus();
 
@@ -650,11 +650,11 @@ const menuButton = {
 
         //字体颜色
         $("#luckysheet-icon-text-color")
-            .mousedown(function(e) {
+            .mousedown(function (e) {
                 hideMenuByCancel(e);
                 e.stopPropagation();
             })
-            .click(function() {
+            .click(function () {
                 let d = editor.deepCopyFlowData(Store.flowdata);
                 let color = $(this).attr("color");
                 if (color == null) {
@@ -664,11 +664,11 @@ const menuButton = {
             });
 
         $("#luckysheet-icon-text-color-menu")
-            .mousedown(function(e) {
+            .mousedown(function (e) {
                 hideMenuByCancel(e);
                 e.stopPropagation();
             })
-            .click(function() {
+            .click(function () {
                 let menuButtonId = $(this).attr("id") + "-menuButton";
                 let $menuButton = $("#" + menuButtonId);
 
@@ -762,7 +762,7 @@ const menuButton = {
                                 ["#900", "#b45f06", "#bf9000", "#38761d", "#134f5c", "#0b5394", "#351c75", "#741b47"],
                                 ["#600", "#783f04", "#7f6000", "#274e13", "#0c343d", "#073763", "#20124d", "#4c1130"],
                             ],
-                            change: function(color) {
+                            change: function (color) {
                                 let $input = $(this);
                                 if (color != null) {
                                     color = color.toHexString();
@@ -784,7 +784,7 @@ const menuButton = {
                             },
                         });
 
-                    $menuButton.find(".luckysheet-color-reset").click(function() {
+                    $menuButton.find(".luckysheet-color-reset").click(function () {
                         $menuButton.hide();
                         luckysheetContainerFocus();
 
@@ -802,7 +802,7 @@ const menuButton = {
                     });
 
                     //交替颜色
-                    $menuButton.find(".luckysheet-icon-alternateformat").click(function() {
+                    $menuButton.find(".luckysheet-icon-alternateformat").click(function () {
                         $menuButton.hide();
                         luckysheetContainerFocus();
 
@@ -837,7 +837,7 @@ const menuButton = {
                 }
 
                 let offsetTop = $(this).offset().top + 26;
-                setTimeout(function() {
+                setTimeout(function () {
                     let $input = $("#" + menuButtonId).find(".luckysheet-color-selected");
                     $input.spectrum("set", $input.val());
                     mouseclickposition($menuButton, menuleft - 28, offsetTop, "lefttop");
@@ -845,7 +845,7 @@ const menuButton = {
             });
 
         //背景颜色
-        $("#luckysheet-icon-cell-color").click(function() {
+        $("#luckysheet-icon-cell-color").click(function () {
             let d = editor.deepCopyFlowData(Store.flowdata);
             let color = $(this).attr("color");
             if (color == null) {
@@ -854,7 +854,7 @@ const menuButton = {
             _this.updateFormat(d, "bg", color);
         });
 
-        $("#luckysheet-icon-cell-color-menu").click(function() {
+        $("#luckysheet-icon-cell-color-menu").click(function () {
             let menuButtonId = $(this).attr("id") + "-menuButton";
             let $menuButton = $("#" + menuButtonId);
 
@@ -914,7 +914,7 @@ const menuButton = {
                             ["#900", "#b45f06", "#bf9000", "#38761d", "#134f5c", "#0b5394", "#351c75", "#741b47"],
                             ["#600", "#783f04", "#7f6000", "#274e13", "#0c343d", "#073763", "#20124d", "#4c1130"],
                         ],
-                        change: function(color) {
+                        change: function (color) {
                             let $input = $(this);
                             if (color != null) {
                                 color = color.toHexString();
@@ -936,7 +936,7 @@ const menuButton = {
                         },
                     });
 
-                $menuButton.find(".luckysheet-color-reset").click(function() {
+                $menuButton.find(".luckysheet-color-reset").click(function () {
                     $menuButton.hide();
                     luckysheetContainerFocus();
 
@@ -954,7 +954,7 @@ const menuButton = {
                 });
 
                 //交替颜色
-                $menuButton.find(".luckysheet-icon-alternateformat").click(function() {
+                $menuButton.find(".luckysheet-icon-alternateformat").click(function () {
                     // *如果禁止前台编辑，则中止下一步操作
                     if (!checkIsAllowEdit()) {
                         tooltip.info("", locale().pivotTable.errorNotAllowEdit);
@@ -998,7 +998,7 @@ const menuButton = {
             }
 
             let offsetTop = $(this).offset().top + 26;
-            setTimeout(function() {
+            setTimeout(function () {
                 let $input = $("#" + menuButtonId).find(".luckysheet-color-selected");
                 $input.spectrum("set", $input.val());
                 mouseclickposition($menuButton, menuleft - 28, offsetTop, "lefttop");
@@ -1008,7 +1008,7 @@ const menuButton = {
         //字体大小
         let luckysheet_fs_setTimeout = null;
         $("#luckysheet-icon-font-size")
-            .mousedown(function(e) {
+            .mousedown(function (e) {
                 if (parseInt($("#luckysheet-input-box").css("top")) > 0) {
                     let w = window.getSelection();
                     if (w.type != "None") {
@@ -1021,7 +1021,7 @@ const menuButton = {
                 hideMenuByCancel(e);
                 e.stopPropagation();
             })
-            .click(function() {
+            .click(function () {
                 let menuButtonId = $(this).attr("id") + "-menuButton";
                 let $menuButton = $("#" + menuButtonId);
 
@@ -1052,7 +1052,7 @@ const menuButton = {
                     $menuButton = $("#" + menuButtonId).width(150);
                     _this.focus($menuButton, 10);
 
-                    $menuButton.find(".luckysheet-cols-menuitem").click(function() {
+                    $menuButton.find(".luckysheet-cols-menuitem").click(function () {
                         $menuButton.hide();
                         luckysheetContainerFocus();
 
@@ -1086,11 +1086,11 @@ const menuButton = {
                 mouseclickposition($menuButton, menuleft, $(this).offset().top + 25, "lefttop");
             })
             .find("input.luckysheet-toolbar-textinput")
-            .keydown(function(e) {
+            .keydown(function (e) {
                 hideMenuByCancel(e);
                 e.stopPropagation();
             })
-            .keyup(function(e) {
+            .keyup(function (e) {
                 if (e.keyCode != 13) {
                     //Enter
                     return;
@@ -1105,14 +1105,14 @@ const menuButton = {
                 let d = editor.deepCopyFlowData(Store.flowdata);
                 _this.updateFormat(d, "fs", itemvalue);
 
-                luckysheet_fs_setTimeout = setTimeout(function() {
+                luckysheet_fs_setTimeout = setTimeout(function () {
                     $menuButton.hide();
                     $this.blur();
                 }, 200);
             });
 
         //边框设置
-        $("#luckysheet-icon-border-all").click(function() {
+        $("#luckysheet-icon-border-all").click(function () {
             // *如果禁止前台编辑，则中止下一步操作
             if (!checkIsAllowEdit()) {
                 tooltip.info("", locale().pivotTable.errorNotAllowEdit);
@@ -1178,12 +1178,12 @@ const menuButton = {
             Store.config = cfg;
             Store.luckysheetfile[getSheetIndex(Store.currentSheetIndex)].config = Store.config;
 
-            setTimeout(function() {
+            setTimeout(function () {
                 luckysheetrefreshgrid();
             }, 1);
         });
 
-        $("#luckysheet-icon-border-menu").click(function() {
+        $("#luckysheet-icon-border-menu").click(function () {
             let menuButtonId = $(this).attr("id") + "-menuButton";
             let $menuButton = $("#" + menuButtonId);
 
@@ -1463,7 +1463,7 @@ const menuButton = {
                 $menuButton = $("#" + menuButtonId).width(170);
                 _this.focus($menuButton, "border-all");
 
-                $("#" + submenuid + " canvas").each(function(i) {
+                $("#" + submenuid + " canvas").each(function (i) {
                     let type = $(this).attr("type");
                     let itemvalue = $(this)
                         .closest(".luckysheet-cols-menuitem")
@@ -1481,7 +1481,7 @@ const menuButton = {
                     canvasborder.closePath();
                 });
 
-                $("#" + submenuid + " .luckysheet-cols-menuitem").click(function() {
+                $("#" + submenuid + " .luckysheet-cols-menuitem").click(function () {
                     $("#" + submenuid).hide();
 
                     let $t = $(this),
@@ -1508,7 +1508,7 @@ const menuButton = {
                 });
 
                 // border choose menu
-                $menuButton.find(".luckysheet-cols-menuitem").click(function() {
+                $menuButton.find(".luckysheet-cols-menuitem").click(function () {
                     // *如果禁止前台编辑，则中止下一步操作
                     if (!checkIsAllowEdit()) {
                         tooltip.info("", locale().pivotTable.errorNotAllowEdit);
@@ -1577,7 +1577,7 @@ const menuButton = {
                     Store.config = cfg;
                     Store.luckysheetfile[getSheetIndex(Store.currentSheetIndex)].config = Store.config;
 
-                    setTimeout(function() {
+                    setTimeout(function () {
                         luckysheetrefreshgrid();
                     }, 1);
 
@@ -1590,8 +1590,8 @@ const menuButton = {
                         .removeAttr("class")
                         .addClass(
                             "luckysheet-icon-img-container luckysheet-icon-img luckysheet-icon-" +
-                                itemvalue +
-                                iconfontObject[itemvalue],
+                            itemvalue +
+                            iconfontObject[itemvalue],
                         );
 
                     _this.focus($menuButton, itemvalue);
@@ -1630,7 +1630,7 @@ const menuButton = {
                             ["#900", "#b45f06", "#bf9000", "#38761d", "#134f5c", "#0b5394", "#351c75", "#741b47"],
                             ["#600", "#783f04", "#7f6000", "#274e13", "#0c343d", "#073763", "#20124d", "#4c1130"],
                         ],
-                        change: function(color) {
+                        change: function (color) {
                             let $input = $(this);
                             if (color != null) {
                                 color = color.toHexString();
@@ -1648,7 +1648,7 @@ const menuButton = {
 
                 $("#" + subcolormenuid)
                     .find(".luckysheet-color-reset")
-                    .click(function() {
+                    .click(function () {
                         let $input = $("#" + subcolormenuid).find(".luckysheet-color-selected");
                         $input.val("#000");
                         $("#luckysheet-icon-cell-color").attr("color", null);
@@ -1668,7 +1668,7 @@ const menuButton = {
         });
 
         //合并单元格
-        $("#luckysheet-icon-merge-button").click(function() {
+        $("#luckysheet-icon-merge-button").click(function () {
             const _locale = locale();
             const locale_merge = _locale.merge;
 
@@ -1715,7 +1715,7 @@ const menuButton = {
             _this.updateFormat_mc(d, "mergeAll");
         });
 
-        $("#luckysheet-icon-merge-menu").click(function() {
+        $("#luckysheet-icon-merge-menu").click(function () {
             let menuButtonId = $(this).attr("id") + "-menuButton";
             let $menuButton = $("#" + menuButtonId);
 
@@ -1738,7 +1738,7 @@ const menuButton = {
                 $menuButton = $("#" + menuButtonId);
                 _this.focus($menuButton);
 
-                $menuButton.find(".luckysheet-cols-menuitem").click(function() {
+                $menuButton.find(".luckysheet-cols-menuitem").click(function () {
                     $menuButton.hide();
                     luckysheetContainerFocus();
 
@@ -1797,7 +1797,7 @@ const menuButton = {
         });
 
         //水平对齐
-        $("#luckysheet-icon-align").click(function() {
+        $("#luckysheet-icon-align").click(function () {
             let itemvalue = $("#luckysheet-icon-align").attr("type");
             if (itemvalue == null) {
                 itemvalue = "left";
@@ -1807,7 +1807,7 @@ const menuButton = {
             _this.updateFormat(d, "ht", itemvalue);
         });
 
-        $("#luckysheet-icon-align-menu").click(function() {
+        $("#luckysheet-icon-align-menu").click(function () {
             let menuButtonId = $(this).attr("id") + "-menuButton";
             let $menuButton = $("#" + menuButtonId);
 
@@ -1846,7 +1846,7 @@ const menuButton = {
                 $menuButton = $("#" + menuButtonId).width(120);
                 _this.focus($menuButton);
 
-                $menuButton.find(".luckysheet-cols-menuitem").click(function() {
+                $menuButton.find(".luckysheet-cols-menuitem").click(function () {
                     $menuButton.hide();
                     luckysheetContainerFocus();
 
@@ -1863,8 +1863,8 @@ const menuButton = {
                         .removeAttr("class")
                         .addClass(
                             "luckysheet-icon-img-container luckysheet-icon-img luckysheet-icon-align-" +
-                                itemvalue +
-                                iconfontObject[itemvalue],
+                            itemvalue +
+                            iconfontObject[itemvalue],
                         );
 
                     let d = editor.deepCopyFlowData(Store.flowdata);
@@ -1883,7 +1883,7 @@ const menuButton = {
         });
 
         //垂直对齐
-        $("#luckysheet-icon-valign").click(function() {
+        $("#luckysheet-icon-valign").click(function () {
             let itemvalue = $("#luckysheet-icon-valign").attr("type");
             if (itemvalue == null) {
                 itemvalue = "bottom";
@@ -1893,7 +1893,7 @@ const menuButton = {
             _this.updateFormat(d, "vt", itemvalue);
         });
 
-        $("#luckysheet-icon-valign-menu").click(function() {
+        $("#luckysheet-icon-valign-menu").click(function () {
             let menuButtonId = $(this).attr("id") + "-menuButton";
             let $menuButton = $("#" + menuButtonId);
             const _locale = locale();
@@ -1931,7 +1931,7 @@ const menuButton = {
                 $menuButton = $("#" + menuButtonId).width(120);
                 _this.focus($menuButton, "bottom");
 
-                $menuButton.find(".luckysheet-cols-menuitem").click(function() {
+                $menuButton.find(".luckysheet-cols-menuitem").click(function () {
                     $menuButton.hide();
                     luckysheetContainerFocus();
 
@@ -1948,8 +1948,8 @@ const menuButton = {
                         .removeAttr("class")
                         .addClass(
                             "luckysheet-icon-img-container luckysheet-icon-img luckysheet-icon-valign-" +
-                                itemvalue +
-                                iconfontObject[itemvalue],
+                            itemvalue +
+                            iconfontObject[itemvalue],
                         );
 
                     let d = editor.deepCopyFlowData(Store.flowdata);
@@ -1968,7 +1968,7 @@ const menuButton = {
         });
 
         //文本换行
-        $("#luckysheet-icon-textwrap-menu").click(function() {
+        $("#luckysheet-icon-textwrap-menu").click(function () {
             let menuButtonId = $(this).attr("id") + "-menuButton";
             let $menuButton = $("#" + menuButtonId);
 
@@ -2007,7 +2007,7 @@ const menuButton = {
                 $menuButton = $("#" + menuButtonId).width(120);
                 _this.focus($menuButton, "clip");
 
-                $menuButton.find(".luckysheet-cols-menuitem").click(function() {
+                $menuButton.find(".luckysheet-cols-menuitem").click(function () {
                     $menuButton.hide();
                     luckysheetContainerFocus();
 
@@ -2024,8 +2024,8 @@ const menuButton = {
                         .removeAttr("class")
                         .addClass(
                             "luckysheet-icon-img-container luckysheet-icon-img luckysheet-icon-textwrap-" +
-                                itemvalue +
-                                iconfontObject[itemvalue],
+                            itemvalue +
+                            iconfontObject[itemvalue],
                         );
 
                     let d = editor.deepCopyFlowData(Store.flowdata);
@@ -2044,7 +2044,7 @@ const menuButton = {
         });
 
         //文本旋转
-        $("#luckysheet-icon-rotation-menu").click(function() {
+        $("#luckysheet-icon-rotation-menu").click(function () {
             let menuButtonId = $(this).attr("id") + "-menuButton";
             let $menuButton = $("#" + menuButtonId);
 
@@ -2103,7 +2103,7 @@ const menuButton = {
                 $menuButton = $("#" + menuButtonId).width(160);
                 _this.focus($menuButton);
 
-                $menuButton.find(".luckysheet-cols-menuitem").click(function() {
+                $menuButton.find(".luckysheet-cols-menuitem").click(function () {
                     $menuButton.hide();
                     luckysheetContainerFocus();
 
@@ -2120,8 +2120,8 @@ const menuButton = {
                         .removeAttr("class")
                         .addClass(
                             "luckysheet-icon-img-container luckysheet-icon-img luckysheet-icon-rotation-" +
-                                itemvalue +
-                                iconfontObject[itemvalue],
+                            itemvalue +
+                            iconfontObject[itemvalue],
                         );
 
                     let d = editor.deepCopyFlowData(Store.flowdata);
@@ -2140,7 +2140,7 @@ const menuButton = {
         });
 
         //冻结行列
-        $("#luckysheet-icon-freezen-menu").click(function() {
+        $("#luckysheet-icon-freezen-menu").click(function () {
             let menuButtonId = $(this).attr("id") + "-menuButton";
             let $menuButton = $("#" + menuButtonId);
 
@@ -2166,7 +2166,7 @@ const menuButton = {
                 $("body").append(menu);
                 $menuButton = $("#" + menuButtonId).width(170);
 
-                $menuButton.find(".luckysheet-cols-menuitem").click(function() {
+                $menuButton.find(".luckysheet-cols-menuitem").click(function () {
                     $menuButton.hide();
                     luckysheetContainerFocus();
 
@@ -2506,7 +2506,7 @@ const menuButton = {
                         luckysheetFreezen.scrollAdapt();
                     }
 
-                    setTimeout(function() {
+                    setTimeout(function () {
                         luckysheetsizeauto();
                     }, 0);
                 });
@@ -2523,7 +2523,7 @@ const menuButton = {
         });
 
         //过滤和排序
-        $("#luckysheet-icon-autofilter").click(function() {
+        $("#luckysheet-icon-autofilter").click(function () {
             let menuButtonId = $(this).attr("id") + "-menuButton";
             let $menuButton = $("#" + menuButtonId);
 
@@ -2567,7 +2567,7 @@ const menuButton = {
                 $("body").append(menu);
                 $menuButton = $("#" + menuButtonId).width(150);
 
-                $menuButton.find(".luckysheet-cols-menuitem").click(function() {
+                $menuButton.find(".luckysheet-cols-menuitem").click(function () {
                     $menuButton.hide();
                     luckysheetContainerFocus();
 
@@ -2603,7 +2603,7 @@ const menuButton = {
         });
 
         //查找和替换
-        $("#luckysheet-icon-seachmore").click(function() {
+        $("#luckysheet-icon-seachmore").click(function () {
             let menuButtonId = $(this).attr("id") + "-menuButton";
             let $menuButton = $("#" + menuButtonId);
             const _locale = locale();
@@ -2676,7 +2676,7 @@ const menuButton = {
                 $("body").append(menu);
                 $menuButton = $("#" + menuButtonId).width(180);
 
-                $menuButton.find(".luckysheet-cols-menuitem").click(function() {
+                $menuButton.find(".luckysheet-cols-menuitem").click(function () {
                     $menuButton.hide();
                     luckysheetContainerFocus();
 
@@ -2793,12 +2793,12 @@ const menuButton = {
         });
 
         //公式
-        $("#luckysheet-icon-function").click(function() {
+        $("#luckysheet-icon-function").click(function () {
             _this.autoSelectionFormula("SUM");
         });
 
         //公式菜单
-        $("#luckysheet-icon-function-menu").click(function() {
+        $("#luckysheet-icon-function-menu").click(function () {
             let menuButtonId = $(this).attr("id") + "-menuButton";
             let $menuButton = $("#" + menuButtonId);
 
@@ -2824,7 +2824,7 @@ const menuButton = {
                 $("body").append(menu);
                 $menuButton = $("#" + menuButtonId).width(180);
 
-                $menuButton.find(".luckysheet-cols-menuitem").click(function() {
+                $menuButton.find(".luckysheet-cols-menuitem").click(function () {
                     $menuButton.hide();
                     luckysheetContainerFocus();
 
@@ -2912,11 +2912,11 @@ const menuButton = {
 
         //加粗
         $("#luckysheet-icon-bold")
-            .mousedown(function(e) {
+            .mousedown(function (e) {
                 hideMenuByCancel(e);
                 e.stopPropagation();
             })
-            .click(function(e) {
+            .click(function (e) {
                 let d = editor.deepCopyFlowData(Store.flowdata);
 
                 let flag = checkTheStatusOfTheSelectedCells("bl", 1);
@@ -2927,11 +2927,11 @@ const menuButton = {
 
         //斜体
         $("#luckysheet-icon-italic")
-            .mousedown(function(e) {
+            .mousedown(function (e) {
                 hideMenuByCancel(e);
                 e.stopPropagation();
             })
-            .click(function() {
+            .click(function () {
                 let d = editor.deepCopyFlowData(Store.flowdata);
 
                 let flag = checkTheStatusOfTheSelectedCells("it", 1);
@@ -2942,11 +2942,11 @@ const menuButton = {
 
         //删除线
         $("#luckysheet-icon-strikethrough")
-            .mousedown(function(e) {
+            .mousedown(function (e) {
                 hideMenuByCancel(e);
                 e.stopPropagation();
             })
-            .click(function() {
+            .click(function () {
                 let d = editor.deepCopyFlowData(Store.flowdata);
                 let flag = checkTheStatusOfTheSelectedCells("cl", 1);
                 let foucsStatus = flag ? 0 : 1;
@@ -2956,11 +2956,11 @@ const menuButton = {
 
         //下划线
         $("#luckysheet-icon-underline")
-            .mousedown(function(e) {
+            .mousedown(function (e) {
                 hideMenuByCancel(e);
                 e.stopPropagation();
             })
-            .click(function() {
+            .click(function () {
                 let d = editor.deepCopyFlowData(Store.flowdata);
                 let flag = checkTheStatusOfTheSelectedCells("un", 1);
                 let foucsStatus = flag ? 0 : 1;
@@ -2969,7 +2969,7 @@ const menuButton = {
             });
 
         //条件格式
-        $("#luckysheet-icon-conditionformat").click(function() {
+        $("#luckysheet-icon-conditionformat").click(function () {
             let menuButtonId = $(this).attr("id") + "-menuButton";
             let $menuButton = $("#" + menuButtonId);
 
@@ -3137,7 +3137,7 @@ const menuButton = {
                 $("#luckysheet-icon-highlightCellRule-menuButton").width(160);
                 $("#luckysheet-icon-projectSelectRule-menuButton").width(180);
 
-                $menuButton.find(".luckysheet-cols-menuitem").click(function() {
+                $menuButton.find(".luckysheet-cols-menuitem").click(function () {
                     $menuButton.hide();
                     luckysheetContainerFocus();
 
@@ -3178,10 +3178,10 @@ const menuButton = {
                                 sheetindex.push(file[i].index);
                             }
 
-                            $.post(loadSheetUrl, { gridKey: server.gridKey, index: sheetindex.join(",") }, function(d) {
+                            $.post(loadSheetUrl, { gridKey: server.gridKey, index: sheetindex.join(",") }, function (d) {
                                 let dataset = new Function("return " + d)();
 
-                                setTimeout(function() {
+                                setTimeout(function () {
                                     Store.loadingObj.close();
                                 }, 500);
 
@@ -3216,7 +3216,7 @@ const menuButton = {
                     .on(
                         "click.CFhighlightCellRule",
                         "#luckysheet-icon-highlightCellRule-menuButton .luckysheet-cols-menuitem",
-                        function() {
+                        function () {
                             $menuButton.hide();
                             $("#luckysheet-icon-highlightCellRule-menuButton").hide();
                             luckysheetContainerFocus();
@@ -3244,8 +3244,8 @@ const menuButton = {
                                                     <input id="conditionVal" class="formulaInputFocus"/>
                                                     <i class="fa fa-table" aria-hidden="true" title="${conditionformat_text.selectCell}"></i>
                                                 </div>
-                                                <div style="margin: 5px 0;">${conditionformat_text.setAs}：</div> 
-                                                ${textCellColorHtml} 
+                                                <div style="margin: 5px 0;">${conditionformat_text.setAs}：</div>
+                                                ${textCellColorHtml}
                                             </div>`;
                                         break;
                                     case "lessThan":
@@ -3339,7 +3339,7 @@ const menuButton = {
                     .on(
                         "click.CFprojectSelectRule",
                         "#luckysheet-icon-projectSelectRule-menuButton .luckysheet-cols-menuitem",
-                        function() {
+                        function () {
                             $menuButton.hide();
                             $("#luckysheet-icon-projectSelectRule-menuButton").hide();
                             luckysheetContainerFocus();
@@ -3445,7 +3445,7 @@ const menuButton = {
                 //数据条子菜单点击事件
                 $(document)
                     .off("click.CFdataBar")
-                    .on("click.CFdataBar", "#luckysheet-icon-dataBar-menuButton .luckysheet-cols-menuitem", function() {
+                    .on("click.CFdataBar", "#luckysheet-icon-dataBar-menuButton .luckysheet-cols-menuitem", function () {
                         $menuButton.hide();
                         $("#luckysheet-icon-dataBar-menuButton").hide();
                         luckysheetContainerFocus();
@@ -3467,7 +3467,7 @@ const menuButton = {
                     .on(
                         "click.CFcolorGradation",
                         "#luckysheet-icon-colorGradation-menuButton .luckysheet-cols-menuitem",
-                        function() {
+                        function () {
                             $menuButton.hide();
                             $("#luckysheet-icon-colorGradation-menuButton").hide();
                             luckysheetContainerFocus();
@@ -3490,7 +3490,7 @@ const menuButton = {
                     .on(
                         "click.CFdeleteRule",
                         "#luckysheet-icon-deleteRule-menuButton .luckysheet-cols-menuitem",
-                        function() {
+                        function () {
                             $menuButton.hide();
                             $("#luckysheet-icon-deleteRule-menuButton").hide();
                             luckysheetContainerFocus();
@@ -3516,7 +3516,7 @@ const menuButton = {
         });
 
         //批注
-        $("#luckysheet-icon-postil").click(function() {
+        $("#luckysheet-icon-postil").click(function () {
             let menuButtonId = $(this).attr("id") + "-menuButton";
             let $menuButton = $("#" + menuButtonId);
 
@@ -3562,7 +3562,7 @@ const menuButton = {
             $("body").append(menu);
             $menuButton = $("#" + menuButtonId).width(150);
 
-            $menuButton.find(".luckysheet-cols-menuitem").click(function() {
+            $menuButton.find(".luckysheet-cols-menuitem").click(function () {
                 $menuButton.hide();
                 luckysheetContainerFocus();
 
@@ -3594,13 +3594,13 @@ const menuButton = {
         });
 
         //sheet protection
-        $("#luckysheet-icon-protection").click(function() {
+        $("#luckysheet-icon-protection").click(function () {
             let sheetFile = sheetmanage.getSheetByIndex();
             openProtectionModal(sheetFile);
         });
 
         //print
-        $("#luckysheet-icon-print").click(function() {
+        $("#luckysheet-icon-print").click(function () {
             let menuButtonId = $(this).attr("id") + "-menuButton";
             let $menuButton = $("#" + menuButtonId);
             const _locale = locale();
@@ -3637,7 +3637,7 @@ const menuButton = {
                 $("body").append(menu);
                 $menuButton = $("#" + menuButtonId).width(180);
 
-                $menuButton.find(".luckysheet-cols-menuitem").click(function() {
+                $menuButton.find(".luckysheet-cols-menuitem").click(function () {
                     $menuButton.hide();
                     luckysheetContainerFocus();
 
@@ -3672,7 +3672,7 @@ const menuButton = {
         });
 
         $("body")
-            .on("mouseover mouseleave", ".luckysheet-menuButton .luckysheet-cols-submenu", function(e) {
+            .on("mouseover mouseleave", ".luckysheet-menuButton .luckysheet-cols-submenu", function (e) {
                 let $t = $(this),
                     attrid = $t.attr("itemvalue"),
                     $attr = $("#luckysheet-icon-" + attrid + "-menuButton");
@@ -3700,12 +3700,12 @@ const menuButton = {
                     _this.rightclickmenu = $t;
                 } else {
                     clearTimeout(_this.submenuhide[$attr.attr("id")]);
-                    _this.submenuhide[$attr.attr("id")] = setTimeout(function() {
+                    _this.submenuhide[$attr.attr("id")] = setTimeout(function () {
                         $attr.hide();
                     }, 200);
                 }
             })
-            .on("mouseover mouseleave", ".luckysheet-menuButton-sub", function(e) {
+            .on("mouseover mouseleave", ".luckysheet-menuButton-sub", function (e) {
                 if (e.type === "mouseover") {
                     _this.rightclickmenu.addClass("luckysheet-cols-menuitem-hover");
                     clearTimeout(_this.submenuhide[$(this).attr("id")]);
@@ -3715,7 +3715,7 @@ const menuButton = {
                 }
             });
     },
-    getQKBorder: function(width, type, color) {
+    getQKBorder: function (width, type, color) {
         let bordertype = "";
 
         if (width.indexOf("pt") > -1) {
@@ -3767,7 +3767,7 @@ const menuButton = {
 
         return [style, color];
     },
-    updateFormatCell: function(d, attr, foucsStatus, row_st, row_ed, col_st, col_ed) {
+    updateFormatCell: function (d, attr, foucsStatus, row_st, row_ed, col_st, col_ed) {
         if (d == null || attr == null) {
             return;
         }
@@ -3897,7 +3897,7 @@ const menuButton = {
             }
         }
     },
-    updateFormat: function(d, attr, foucsStatus) {
+    updateFormat: function (d, attr, foucsStatus) {
         let _this = this;
 
         if (!checkProtectionFormatCells(Store.currentSheetIndex)) {
@@ -3952,7 +3952,7 @@ const menuButton = {
 
         jfrefreshgrid(d, Store.luckysheet_select_save, allParam, false);
     },
-    updateFormat_mc: function(d, foucsStatus) {
+    updateFormat_mc: function (d, foucsStatus) {
         // *如果禁止前台编辑，则中止下一步操作
         if (!checkIsAllowEdit()) {
             tooltip.info("", locale().pivotTable.errorNotAllowEdit);
@@ -4192,7 +4192,7 @@ const menuButton = {
         jfrefreshgrid(d, Store.luckysheet_select_save, { cfg, calc, hyperlink });
         Store.clearjfundo = true;
     },
-    borderfix: function(d, r, c) {
+    borderfix: function (d, r, c) {
         // return [-1, -1, 2, 2];
 
         let cell = d[r][c];
@@ -4207,7 +4207,7 @@ const menuButton = {
             //return [-2, -2, 1, 0];
         }
     },
-    changeMenuButtonDom: function(attr, foucsStatus, _locale) {
+    changeMenuButtonDom: function (attr, foucsStatus, _locale) {
         let _this = this;
         if (_locale == null) {
             _locale = locale();
@@ -4300,8 +4300,8 @@ const menuButton = {
                 .removeAttr("class")
                 .addClass(
                     "luckysheet-icon-img-container luckysheet-icon-img luckysheet-icon-align-" +
-                        itemvalue +
-                        iconfontObject[itemvalue],
+                    itemvalue +
+                    iconfontObject[itemvalue],
                 );
             $menuButton.hide();
         } else if (attr == "vt") {
@@ -4327,8 +4327,8 @@ const menuButton = {
                 .removeAttr("class")
                 .addClass(
                     "luckysheet-icon-img-container luckysheet-icon-img luckysheet-icon-valign-" +
-                        itemvalue +
-                        iconfontObject[itemvalue],
+                    itemvalue +
+                    iconfontObject[itemvalue],
                 );
             $menuButton.hide();
         } else if (attr == "tb") {
@@ -4354,8 +4354,8 @@ const menuButton = {
                 .removeAttr("class")
                 .addClass(
                     "luckysheet-icon-img-container luckysheet-icon-img luckysheet-icon-textwrap-" +
-                        itemvalue +
-                        iconfontObject[itemvalue],
+                    itemvalue +
+                    iconfontObject[itemvalue],
                 );
             $menuButton.hide();
         } else if (attr == "tr") {
@@ -4387,8 +4387,8 @@ const menuButton = {
                 .removeAttr("class")
                 .addClass(
                     "luckysheet-icon-img-container luckysheet-icon-img luckysheet-icon-rotation-" +
-                        itemvalue +
-                        iconfontObject[itemvalue],
+                    itemvalue +
+                    iconfontObject[itemvalue],
                 );
             $menuButton.hide();
         } else if (attr == "ct") {
@@ -4409,7 +4409,7 @@ const menuButton = {
             }
         }
     },
-    inputMenuButtonFocus: function(focusTarget) {
+    inputMenuButtonFocus: function (focusTarget) {
         var w = window.getSelection();
         var range = w.getRangeAt(0);
         let startContainer = range.startContainer;
@@ -4423,7 +4423,7 @@ const menuButton = {
             }
         }
     },
-    menuButtonFocus: function(d, r, c) {
+    menuButtonFocus: function (d, r, c) {
         let _this = this;
         let foucsList = ["bl", "it", "cl", "ff", "ht", "vt", "fs", "tb", "tr", "ct", "un"];
         const _locale = locale();
@@ -4434,7 +4434,7 @@ const menuButton = {
             this.changeMenuButtonDom(attr, foucsStatus, _locale);
         }
     },
-    checkstatus: function(d, r, c, a) {
+    checkstatus: function (d, r, c, a) {
         if (d == null || d[r] == null) {
             console.warn("It's incorrect data", r, c);
             return null;
@@ -4442,7 +4442,7 @@ const menuButton = {
         let foucsStatus = d[r][c];
         return checkstatusByCell(foucsStatus, a);
     },
-    setLineDash: function(canvasborder, type, hv, m_st, m_ed, line_st, line_ed) {
+    setLineDash: function (canvasborder, type, hv, m_st, m_ed, line_st, line_ed) {
         let borderType = {
             "0": "none",
             "1": "Thin",
@@ -4502,7 +4502,7 @@ const menuButton = {
             canvasborder.lineWidth = 1;
         }
     },
-    moveMergeData: function(d, offset_r, offset_c) {
+    moveMergeData: function (d, offset_r, offset_c) {
         if (isRealNull(d)) {
             return d;
         }
@@ -4541,7 +4541,7 @@ const menuButton = {
 
         return { deleMC: deleMC, insertMC: insertMC, hasMC: hasMC };
     },
-    getRangeInMerge: function(st_r, rlen, st_c, clen, sheetIndex) {
+    getRangeInMerge: function (st_r, rlen, st_c, clen, sheetIndex) {
         let _this = this;
 
         let mergelist = [];
@@ -4566,7 +4566,7 @@ const menuButton = {
 
         return mergelist;
     },
-    mergeborer: function(d, row_index, col_index) {
+    mergeborer: function (d, row_index, col_index) {
         if (d == null || d[row_index] == null) {
             console.warn("Merge info is null", row_index, col_index);
             return null;
@@ -4636,7 +4636,7 @@ const menuButton = {
         }
     },
     mergeMoveData: {},
-    mergeMoveMain: function(columnseleted, rowseleted, s, top, height, left, width) {
+    mergeMoveMain: function (columnseleted, rowseleted, s, top, height, left, width) {
         let _this = this;
         let mergesetting = sheetmanage.getSheetMerge();
 
@@ -4692,7 +4692,7 @@ const menuButton = {
 
         return [columnseleted, rowseleted, top, height, left, width];
     },
-    mergeMove: function(mc, columnseleted, rowseleted, s, top, height, left, width) {
+    mergeMove: function (mc, columnseleted, rowseleted, s, top, height, left, width) {
         let _this = this;
 
         let row_st = mc.r,
@@ -4775,7 +4775,7 @@ const menuButton = {
             return null;
         }
     },
-    getCellRealSize: function(d, cell_r, cell_c) {
+    getCellRealSize: function (d, cell_r, cell_c) {
         let _this = this;
 
         let width = Store.defaultcollen;
@@ -4815,7 +4815,7 @@ const menuButton = {
         return [width, height];
     },
     getTextHeightCache: {},
-    getTextSize: function(text, font) {
+    getTextSize: function (text, font) {
         let fontarray = locale().fontarray;
         let f = font || "10pt " + fontarray[0];
 
@@ -4828,14 +4828,14 @@ const menuButton = {
         if ($("#luckysheetTextSizeTest").length == 0) {
             $(
                 '<span id="luckysheetTextSizeTest" style="float:left;white-space:nowrap;visibility:hidden;margin:0;padding:0;">' +
-                    text +
-                    "</span>",
+                text +
+                "</span>",
             ).appendTo($("body"));
         }
 
         let o = $("#luckysheetTextSizeTest")
-                .text(text)
-                .css({ font: f }),
+            .text(text)
+            .css({ font: f }),
             w = o.innerWidth(),
             h = o.innerHeight();
 
@@ -4843,7 +4843,7 @@ const menuButton = {
 
         return [w, h];
     },
-    activeFormulaInput: function(row_index, col_index, rowh, columnh, formula, isnull) {
+    activeFormulaInput: function (row_index, col_index, rowh, columnh, formula, isnull) {
         let _this = this;
 
         if (isnull == null) {
@@ -4907,7 +4907,7 @@ const menuButton = {
 
         $("#luckysheet-formula-help-c").hide();
     },
-    backFormulaInput: function(d, r, c, rowh, columnh, formula) {
+    backFormulaInput: function (d, r, c, rowh, columnh, formula) {
         let _this = this;
 
         let f =
@@ -4923,7 +4923,7 @@ const menuButton = {
 
         server.historyParam(d, Store.currentSheetIndex, { row: [r, r], column: [c, c] });
     },
-    checkNoNullValue: function(cell) {
+    checkNoNullValue: function (cell) {
         let v = cell;
         if (getObjType(v) == "object") {
             v = v.v;
@@ -4939,7 +4939,7 @@ const menuButton = {
             return false;
         }
     },
-    checkNoNullValueAll: function(cell) {
+    checkNoNullValueAll: function (cell) {
         let v = cell;
         if (getObjType(v) == "object") {
             v = v.v;
@@ -4951,7 +4951,7 @@ const menuButton = {
             return false;
         }
     },
-    getNoNullValue: function(d, st_x, ed, type) {
+    getNoNullValue: function (d, st_x, ed, type) {
         let _this = this;
         let hasValueSum = 0,
             hasValueStart = null;
@@ -4986,7 +4986,7 @@ const menuButton = {
 
         return hasValueStart;
     },
-    singleFormulaInput: function(d, _index, fix, st_m, ed_m, formula, type, noNum, noNull) {
+    singleFormulaInput: function (d, _index, fix, st_m, ed_m, formula, type, noNum, noNull) {
         let _this = this;
 
         if (type == null) {
@@ -5117,14 +5117,14 @@ const menuButton = {
             return true;
         }
     },
-    autoSelectionFormula: function(formula) {
+    autoSelectionFormula: function (formula) {
         let _this = this;
         let d = editor.deepCopyFlowData(Store.flowdata);
         let nullfindnum = 40;
         let isfalse = true;
         luckysheetformula.execFunctionExist = [];
 
-        let execFormulaInput_c = function(d, st_r, ed_r, st_c, ed_c, formula) {
+        let execFormulaInput_c = function (d, st_r, ed_r, st_c, ed_c, formula) {
             let st_c_c = _this.getNoNullValue(d, st_r, ed_c, "c");
 
             if (st_c_c == null) {
@@ -5134,7 +5134,7 @@ const menuButton = {
             }
         };
 
-        let execFormulaInput = function(d, st_r, ed_r, st_c, ed_c, formula) {
+        let execFormulaInput = function (d, st_r, ed_r, st_c, ed_c, formula) {
             let st_r_c = _this.getNoNullValue(d, st_c, ed_r, "r");
 
             if (st_r_c == null) {
@@ -5194,12 +5194,12 @@ const menuButton = {
             jfrefreshgrid(d, Store.luckysheet_select_save);
 
             clearTimeout(Store.jfcountfuncTimeout);
-            Store.jfcountfuncTimeout = setTimeout(function() {
+            Store.jfcountfuncTimeout = setTimeout(function () {
                 countfunc();
             }, 500);
         }
     },
-    getStyleByCell: function(d, r, c) {
+    getStyleByCell: function (d, r, c) {
         let _this = this;
         let style = "";
 
@@ -5323,7 +5323,7 @@ const menuButton = {
         "华文行楷",
         "华文隶书",
     ],
-    addFontTolist: function(fontName) {
+    addFontTolist: function (fontName) {
         fontName = fontName.replace(/"/g, "").replace(/'/g, "");
         let isNone = true;
         for (let a = 0; a < this.fontSelectList.length; a++) {
@@ -5359,7 +5359,7 @@ const menuButton = {
             $menuButton.html(itemset);
         }
     },
-    fontInitial: function(fontList) {
+    fontInitial: function (fontList) {
         let itemdata = [];
         const locale_fontarray = locale().fontarray;
         for (let a = 0; a < locale_fontarray.length; a++) {
@@ -5404,7 +5404,7 @@ const menuButton = {
             }
 
             document.fonts &&
-                document.fonts.ready.then(function() {
+                document.fonts.ready.then(function () {
                     // Any operation that needs to be done only after all the fonts
                     // have finished loading can go here.
                     // console.log("font ready");

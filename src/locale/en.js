@@ -6243,10 +6243,10 @@ export default {
         pageInfoFull: "Total ${total}，${totalPage} page，All data displayed",
     },
     currencyDetail: {
+        GBP: "GBP",
         RMB: "RMB",
         USdollar: "US dollar",
         EUR: "EUR",
-        GBP: "GBP",
         HK: "HK",
         JPY: "JPY",
         AlbanianLek: "Albanian Lek",
@@ -6409,10 +6409,8 @@ export default {
         { text: "Percent", value: "#0.00%", example: "12.21%" },
         { text: "Scientific", value: "0.00E+00", example: "1.01E+5" },
         { text: "", value: "split", example: "" },
-        { text: "Accounting", value: "¥(0.00)", example: "¥(1200.09)" },
-
-        { text: "Currency", value: "¥0.00", example: "¥1200.09" },
-
+        { text: "Accounting", value: "£(0.00)", example: "£(1200.09)" },
+        { text: "Currency", value: "£0.00", example: "£1200.09" },
         { text: "", value: "split", example: "" },
         { text: "Date", value: "yyyy-MM-dd", example: "2017-11-29" },
         { text: "Time", value: "hh:mm AM/PM", example: "3:00 PM" },
@@ -6465,10 +6463,10 @@ export default {
         },
     ],
     fontFamily: {
-        MicrosoftYaHei: "YaHei",
+        Arial: "Arial",
     },
-    fontarray: ["Times New Roman", "Arial", "Tahoma", "Verdana"],
-    fontjson: { "times new roman": 0, arial: 1, tahoma: 2, verdana: 3 },
+    fontarray: ["Arial", "Times New Roman", "Tahoma", "Verdana"],
+    fontjson: { arial: 0, "times new roman": 1, tahoma: 2, verdana: 3 },
     border: {
         borderTop: "borderTop",
         borderBottom: "borderBottom",

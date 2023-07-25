@@ -157,8 +157,8 @@ export function createToolbarHtml() {
                 <div class="luckysheet-toolbar-button-inner-box luckysheet-inline-block"
                 style="user-select: none;">
                     <div class="luckysheet-icon luckysheet-inline-block " style="user-select: none;">
-                        <div aria-hidden="true" class="luckysheet-icon-img-container luckysheet-icon-img iconfont luckysheet-iconfont-jine"
-                        style="user-select: none;">
+                        <div aria-hidden="true" class="luckysheet-icon-img-container luckysheet-icon-img iconfont "
+                        style="user-select: none;">£
                         </div>
                     </div>
                 </div>
@@ -864,13 +864,13 @@ export function createToolbarHtml() {
             return '';
         }
         let i = 0;
-        showtoolbarConfig.forEach(function(key, i) {
+        showtoolbarConfig.forEach(function (key, i) {
             if (key === '|') {
                 const nameKeys = showtoolbarConfig[i - 1]
-                if(nameKeys !== '|') {
+                if (nameKeys !== '|') {
                     buttonHTML.push(
                         `<div id="toolbar-separator-${camel2split(nameKeys)}" class="luckysheet-toolbar-separator luckysheet-inline-block" style="user-select: none;"></div>`
-                        );
+                    );
                 }
             } else {
                 buttonHTML.push(htmlMap[key]);
@@ -879,7 +879,7 @@ export function createToolbarHtml() {
         return buttonHTML.join('');
     }
 
-    const config = defaultToolbar.reduce(function(total, curr) {
+    const config = defaultToolbar.reduce(function (total, curr) {
         if (curr !== '|') {
             total[curr] = true;
         }
@@ -894,7 +894,7 @@ export function createToolbarHtml() {
 
     // 对象模式 则从里面挑选 true 保留 false 删掉
     if (JSON.stringify(showtoolbarConfig) !== '{}') {
-        if(showtoolbarConfig.hasOwnProperty('undoRedo')){
+        if (showtoolbarConfig.hasOwnProperty('undoRedo')) {
             config.undo = config.redo = showtoolbarConfig.undoRedo;
         }
         Object.assign(config, showtoolbarConfig);
@@ -910,7 +910,7 @@ export function createToolbarHtml() {
         }
         if (key === '|') {
             const nameKeys = defaultToolbar[i - 1]
-            if(nameKeys !== '|') {
+            if (nameKeys !== '|') {
                 buttonHTML.push(
                     `<div id="toolbar-separator-${camel2split(nameKeys)}" class="luckysheet-toolbar-separator luckysheet-inline-block" style="user-select: none;"></div>`
                 );
